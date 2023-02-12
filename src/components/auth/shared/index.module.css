@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+.navSection {
+  font-family: 'Ubuntu', sans-serif;
+  min-height: 70px;
+}
+
+.backgroundNavbarMenu {
+  background-color: #6d8fff !important;
+  color: white;
+  box-shadow: rgba(65, 65, 114, 0.2) 0px 8px 24px !important;
+}
+
+.navLink:hover {
+  text-decoration: underline;
+}
+
+.navSection h3 {
+  letter-spacing: 1px;
+}
+
+.fontUserStyle {
+  font-weight: 300;
+  text-transform: capitalize;
+  letter-spacing: 1;
+  color: black !important;
+  font-size: 15px;
+}
+
+/* auth */
+.backgroundRoot {
+	background: #f2edf3;
+	min-height: 100vh;
+}
+
+.sectionStyle {
+	padding: 40px 10px;
+}
+
+.bgGradient {
+  width: 36px;
+  height: 36px;
+  box-shadow: 0px 3px 8.3px 0.7px rgb(163 93 255 / 35%);
+  border-radius: 4px;
+	background: -webkit-gradient(
+		linear,
+		left top,
+		right top,
+		from(#6d8fff),
+		to(#9955ffb2)
+	) !important;
+	background: linear-gradient(to right, #6d8fff, #9955ffb2) !important;
+}
+
+.overview p {
+  color: rgba(52, 58, 64, 0.8) !important;
+  font-size: 14px;
+}
+
+
+/* Footer */
+.footer {
+  height: 76px;
+  border-top: 1px solid #e7dee9;
+  font-family: 'ubuntu-regular', sans-serif;
+  color:  '#9C9FA6 !important';
+}

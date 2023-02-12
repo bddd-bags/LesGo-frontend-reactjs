@@ -1,0 +1,137 @@
+@import url("https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+.loginBox h5 {
+	font-family: "Montserrat", sans-serif;
+	letter-spacing: 1px;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.loginBox input {
+  color: #757575;
+  font-weight: normal !important;
+}
+
+.loginBox input:focus {
+  color: #757575;
+  font-weight: normal;
+}
+
+.loginBox {
+  padding: 50px; }
+  .loginBox h5 {
+    text-align: center;
+    margin-bottom: 20px; }
+  .loginBox label {
+    padding: 5px;
+    font-size: .9rem;
+    font-weight: 600;
+    margin-bottom: -15px;
+    z-index: 99;
+    background-color: #FFF;
+    width: auto;
+    margin-left: 13px; }
+  .loginBox input {
+    border-radius: 0px;
+    padding-top: 13px;
+    padding-bottom: 5px;
+    background-color: #FFF;
+    font-weight: 600; }
+  .loginBox p {
+    margin-bottom: 10px;
+    font-size: .9rem; }
+    .loginBox p .vgh {
+      float: right;
+      margin-top: -32px;
+      color: #3751fe;
+      font-weight: 600; }
+  .loginBox .loginRow .btn {
+    font-weight: 600; }
+  .loginBox .loginRow .btn-primary {
+    margin-bottom: 20px; }
+  .loginBox .donroo {
+    margin-top: 15px;
+    font-size: .9rem;
+    text-align: center; }
+
+    .loginRow input:focus {
+      box-shadow: none !important;
+      border: 1px solid #CCC; 
+    }
+
+/* .authBody {
+  background-image: url(../../assets/images/login-bg.jpg) !important;
+  background-size: 100%;
+  height: 100%;
+  overflow: hidden; }
+  @media screen and (max-width: 991px) {
+    .authBody {
+      overflow: auto; } }
+
+.loginContainer {
+	margin: auto;
+	box-shadow: 1.5px 3.99px 27px 0px rgba(0, 0, 0, 0.1);
+	transition: 0.3s;
+	background-color: rgba(255, 255, 255, 0.72);
+	margin: auto;
+	margin-top: 7%;
+}
+@media screen and (max-width: 991px) {
+	.loginContainer {
+		margin-bottom: 5%;
+	}
+}
+
+.imgBox {
+	margin: auto;
+	padding: 60px 40px;
+	border-right: 1px solid #cccccc5e;
+	text-align: center;
+}
+
+.loginBox {
+  padding: 60px 50px;
+  border-left: 1px solid #cccccc5e;
+  margin: auto; }
+  .loginBox h5 {
+    margin-bottom: 50px; }
+  .loginBox .loginRow {
+    margin-top: 25px; }
+    .loginBox .loginRow input {
+      margin-bottom: 0px; }
+  .loginBox .forrr p {
+    font-size: .9rem; }
+  .loginBox .forrr a {
+    font-size: .9rem;
+    float: right;
+    margin-top: -22px;
+    color: #5288f4; }
+  .loginBox .donroo p {
+    font-size: .9rem; }
+  .loginBox .donroo a {
+    font-size: .9rem;
+    color: #5288f4;
+    padding-left: 3px;
+    text-decoration: underline; }
+  .loginBox .btnroo .btn {
+    margin-right: 15px;
+    border-radius: 50px;
+    width: 120px; }
+  .loginBox label {
+    font-size: .93rem;
+    margin-bottom: 0px;
+    color: #928f8f; }
+    .loginBox label i {
+      margin-right: 3px; }
+  .loginBox input {
+    border: 0px;
+    border-radius: 0px;
+    border-bottom: 1px solid #CCC;
+    background-color: #fcfbfc1f;
+    margin-top: -23px; }
+    .loginBox input:focus {
+      border: 0px !important;
+      border-bottom: 2px solid #5288f4 !important;
+      background-color: #fcfbfc1f !important;
+      margin-top: 0px;
+      transition: 0.1s ease; } */

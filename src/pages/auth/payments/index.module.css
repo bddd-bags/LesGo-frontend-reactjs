@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Poppins&family=Quicksand&family=Source+Sans+Pro&display=swap');
+
+.sectionRoot {
+  min-height: 40vh;
+  padding: 50px !important;
+  background-color: #ffffff;
+  border-radius: 8px;
+  font-family: 'ubuntu-regular', sans-serif;
+  /* box-shadow: rgba(207, 218, 228, 0.658) 0px 0px 24px !important; */
+}
+
+.thead th {
+  padding: 15px 30px 15px 15px !important;
+  font-size: 14px !important;
+  text-transform: capitalize !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+.tbody td {
+  padding: 15px !important;
+  font-size: 14px !important;
+  text-transform: capitalize !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+.badgeWarning {
+  padding: 7px 10px !important;
+  font-size: 13px !important;
+  cursor: pointer !important;
+}
+
+.badgeDanger {
+  border: 1px solid #fe7c96;
+  background: #f84f71 !important;
+  color: #ffffff;
+  padding: 7px 10px !important;
+  font-size: 13px !important;
+  cursor: pointer !important;
+}
+
+.btnPrimary {
+  background-color: #4d70e2 !important;
+  border: 0 !important;
+  color: white !important;
+  font-weight: 600px;
+}
+
+.btnPrimary:hover {
+  color: white !important;
+  background-color: #2954e0 !important;
+}
+
+/* add payment */
+.addCompanyRoot {
+  font-family: 'Quicksand'  !important;
+  font-size: 14px !important;
+}
+
+.addCompanyRoot input, .addCompanyRoot select {
+  box-shadow: none !important;
+  border: 1px solid #dcdcdc;
+  color: #353535;
+}
+
+.addCompanyRoot input:focus, .addCompanyRoot select:focus {
+  box-shadow: none !important;
+  border: 1px solid #dcdcdc;
+  color: #353535;
+}
+
+.addButton {
+  /* border: none !important; */
+  background: #2da1d6 !important;
+	color: white !important;
+  font-size: 14px;
+  padding: 5px 20px !important;
+}
+
+.addButton:hover {
+  background: #0b82b9 !important;
+	color: white !important;
+}
+
+.backButton {
+  font-size: 14px;
+  padding: 5px 20px !important;
+}

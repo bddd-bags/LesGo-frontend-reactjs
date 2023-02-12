@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+.gridMargin {
+  margin-bottom: 2.5rem;
+}
+
+.bgGradientSuccess {
+  border: 0 !important;
+  background: linear-gradient(to right, #67b9b3, #06c2a6) !important;
+}
+
+.bgGradientDanger {
+  border: 0 !important;
+  background: linear-gradient(to right, #ffbf96, #fe7096) !important;
+}
+
+.stretchCard {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-box-pack: stretch;
+  -ms-flex-pack: stretch;
+  justify-content: stretch;
+  font-family: "ubuntu-regular", sans-serif;
+}
+
+
+.stretchCard > .card {
+  width: 100%;
+  min-width: 100%;
+}
+
+.cardImgHolder {
+  position: relative;
+}
+
+.cardImgAbsolute {
+  position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+}
+
+.fontWeightNormal {
+  font-weight: 400 !important;
+  font-family: "ubuntu-regular", sans-serif;
+}
+
+.bgGradientSuccess h4 {
+  font-weight: 400;
+  letter-spacing: 1px;
+}

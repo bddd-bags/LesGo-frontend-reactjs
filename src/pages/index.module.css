@@ -1,0 +1,64 @@
+.headerHome {
+  min-height: calc(80vh - 72px);
+}
+
+.registerButton {
+	padding: 10px 40px !important;
+	border-radius: 30px !important;
+	font-weight: 600 !important;
+	background: #47b2e4 !important;
+	border: none !important;
+  color: white;
+}
+
+.registerButton:hover {
+	background: #209dd8 !important;
+}
+
+.sectionTitle {
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.sectionTitle h2 {
+  font-size: 32px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  position: relative;
+  color: #37517e;
+}
+
+.sectionTitle h2::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 120px;
+  height: 1px;
+  background: #ddd;
+  bottom: 1px;
+  left: calc(50% - 60px);
+}
+
+.sectionTitle h2::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: #47b2e4;
+  bottom: 0;
+  left: calc(50% - 20px);
+}
+
+.sectionTitle p {
+  margin-bottom: 0;
+}
+
+.course {
+	padding: 50px 0;
+	background: #f3f5fa;
+	font-size: 15px;
+	color: #444444;
+}

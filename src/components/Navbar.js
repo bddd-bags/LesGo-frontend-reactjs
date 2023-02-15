@@ -13,12 +13,6 @@ const NavbarComponent = () => {
 	const [role, setRole] = useState();
 	const navigate = useNavigate();
 
-	// const userId = jwtDecode(token).id;
-
-	// const activeClass = {
-	// 	fontWeight: "bold !important",
-	// };
-
 	useEffect(() => {
 		if (Boolean(token)) {
 			const getPayload = jwtDecode(token);

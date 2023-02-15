@@ -2,33 +2,61 @@ import React, { useEffect, useState } from "react";
 import Index from "../../../components/auth/shared/Index";
 import { TiFlowSwitch } from "react-icons/ti";
 import styles from "./index.module.css";
-import accountLogo from "../../../assets/images/account.png";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useNavigate } from "react-router-dom";
-import { findOneUsers, findUsers } from "../../../reducers/actions/userSlice";
+import { useParams } from "react-router-dom";
+import {
+	findOneUsers,
+	findUsers,
+	updateUsers,
+} from "../../../reducers/actions/userSlice";
+import Swal from "sweetalert2";
 
 const Profile = () => {
 	const dispatch = useDispatch();
+	const [trigger, setTrigger] = useState(false);
 	const [user, setUser] = useState({});
 	const { userId } = useParams();
+	const BASE_URL_IMAGE = "http://localhost:3000/images/profile";
 
 	const getUser = useSelector(findOneUsers);
 
 	useEffect(() => {
+		if (trigger) {
+			setTrigger(false);
+		}
 		dispatch(findUsers(userId));
-	}, [userId, dispatch]);
+	}, [userId, dispatch, trigger]);
 
 	useEffect(() => {
 		if (!getUser.loading) {
-			setUser(getUser.data);
+			setUser({ ...getUser.data, ...getUser.data.profile });
 		}
 	}, [getUser]);
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		console.log(user);
+		const result = await dispatch(updateUsers({ id: userId, data: user }));
+		if (result.meta.requestStatus === "fulfilled") {
+			Swal.fire({
+				position: "center",
+				icon: "success",
+				title: "Profile has been updated!",
+				showConfirmButton: false,
+				timer: 1500,
+			});
+			return setTrigger(true);
+		} else {
+			return Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Something went wrong!",
+			});
+		}
 	};
+
+	console.log(user);
 
 	const element = () => {
 		return (
@@ -72,7 +100,7 @@ const Profile = () => {
 										<Form.Control
 											size="sm"
 											type="text"
-											value={!user.profile.address ? "" : user.profile.address}
+											value={!user.address ? "" : user.address}
 											onChange={(e) =>
 												setUser({ ...user, address: e.target.value })
 											}
@@ -90,7 +118,7 @@ const Profile = () => {
 											<Form.Control
 												size="sm"
 												type="number"
-												value={!user.profile.age ? "" : user.profile.age}
+												value={!user.age ? "" : user.age}
 												onChange={(e) =>
 													setUser({ ...user, age: e.target.value })
 												}
@@ -103,7 +131,7 @@ const Profile = () => {
 											controlId="formBasicEmail"
 										>
 											<Form.Label>Gender</Form.Label>
-											{!user.gender ? (
+											{/* {!user.gender ? (
 												<>
 													<Form.Select
 														aria-label="Default select example"
@@ -114,25 +142,31 @@ const Profile = () => {
 														<option value="FEMALE">Female</option>
 													</Form.Select>
 												</>
-											) : (
-												<Form.Select
-													aria-label="Default select example"
-													size="sm"
-													value={user.gender}
-												>
-													{/* <option>Open this select gender</option> */}
-													<option value="MALE">Male</option>
-													<option value="FEMALE">Female</option>
-												</Form.Select>
-											)}
-											{/* <Form.Text className="text-muted">Username</Form.Text> */}
+											) : ( */}
+											<Form.Select
+												aria-label="Default select example"
+												size="sm"
+												defaultValue={user.gender}
+												onChange={(e) =>
+													setUser({ ...user, gender: e.target.value })
+												}
+											>
+												<option>Open this select gender</option>
+												<option value="MALE">Male</option>
+												<option value="FEMALE">Female</option>
+											</Form.Select>
+											{/* )} */}
 										</Form.Group>
 									</Row>
 									<div className="mb-3">
 										<div className="d-flex">
 											<div className={`${styles.featuredImage}`}>
 												<img
-													src="https://via.placeholder.com/1000"
+													src={
+														!user.profile.img
+															? "https://via.placeholder.com/1000"
+															: `${BASE_URL_IMAGE}/${user.profile.img}`
+													}
 													style={{ maxWidth: "200px", objectFit: "cover" }}
 													alt=""
 												/>
@@ -147,7 +181,7 @@ const Profile = () => {
 														type="file"
 														size="sm"
 														onChange={(e) =>
-															setUser({ ...user, img: e.target.value })
+															setUser({ ...user, img: e.target.files[0] })
 														}
 													/>
 													<div id="name" className="form-text">

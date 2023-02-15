@@ -11,10 +11,15 @@ import {
 import { Pagination } from "react-bootstrap";
 
 const Course = () => {
+  const [token, setToken] = useState(false);
 	const [counter, setCounter] = useState(1);
 	const dispacth = useDispatch();
 	const courses = useSelector(getAllCourseActive);
 	const BASE_URL_IMAGE = "http://localhost:3000/images/course";
+
+	useEffect(() => {
+		setToken(Boolean(localStorage.getItem("access_token")));
+	}, []);
 
 	useEffect(() => {
 		dispacth(getCourseActive(counter));
@@ -36,8 +41,6 @@ const Course = () => {
 			currency: "IDR",
 		}).format(number);
 	};
-
-	console.log(courses.data.data);
 
 	return (
 		<>
@@ -108,11 +111,21 @@ const Course = () => {
 																		Price : Rp. {rupiah(e.price)}
 																	</small>
 																</p>
-																<Link to={`/courses/detail/${e.id}`}>
-																	<button className="btn btn-primary btn-sm">
-																		More
-																	</button>
-																</Link>
+																{!token ? (
+																	<>
+																		<Link to={`/auth/login`}>
+																			<button className="btn btn-primary btn-sm">
+																				Join
+																			</button>
+																		</Link>
+																	</>
+																) : (
+																	<Link to={`/courses/detail/${e.id}`}>
+																		<button className="btn btn-primary btn-sm">
+																			More
+																		</button>
+																	</Link>
+																)}
 															</div>
 														</div>
 													</div>

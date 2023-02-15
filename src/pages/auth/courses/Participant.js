@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Table, Badge, Button } from "react-bootstrap";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styles from "./index.module.css";
 import Index from "../../../components/auth/shared/Index";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,7 +15,6 @@ import { deleteUserCourses } from "../../../reducers/actions/userCourseSlice";
 
 const Participant = () => {
 	const [trigger, setTrigger] = useState(false);
-	const navigate = useNavigate();
 	const { courseId } = useParams();
 	const dispatch = useDispatch();
 	const course = useSelector(findOneCoursePartners);

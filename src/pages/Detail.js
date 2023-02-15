@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./index.module.css";
 import { AiOutlineLeftCircle } from "react-icons/ai";
 import { Form, Table, Badge } from "react-bootstrap";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,11 +15,10 @@ import Swal from "sweetalert2";
 import { deleteUserCourses } from "../reducers/actions/userCourseSlice";
 
 const Detail = () => {
-	const [token] = useState(localStorage.getItem("access_token"));
 	const [trigger, setTrigger] = useState(false);
 	const [paymentId, setPaymentId] = useState(0);
+	// const [checkUser, setCheckUser] = useState(false);
 	const { courseId } = useParams();
-	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const course = useSelector(findOneCourses);
 	const filterUserCourse = useSelector((state) => {
@@ -174,48 +173,36 @@ const Detail = () => {
 									<div className={`card ${styles.cardStyle}`}>
 										<div className="m-4">
 											{!filterUserCourse.length ? (
-												!token ? (
-													<>
-														<Link to={"/auth/login"}>
-															<button
-																className={`btn w-100 btn-secondary ${styles.btnDetail}`}
-															>
-																Join
-															</button>
-														</Link>
-													</>
-												) : (
-													<>
-														<div className="mb-3">
-															<label className="mb-1">Payment Method</label>
-															<Form.Select
-																aria-label="Default select example"
-																onChange={(e) => setPaymentId(e.target.value)}
-															>
-																<option>Select payment</option>
-																{!course.data.company
-																	? "loading"
-																	: course.data.company.payments.map((e, i) => {
-																			return (
-																				<>
-																					<option key={i} value={e.id}>
-																						{e.provider_service} - {e.name}
-																					</option>
-																				</>
-																			);
-																	  })}
-															</Form.Select>
-														</div>
-														<button
-															className={`btn w-100 btn-secondary ${styles.btnDetail}`}
-															onClick={() =>
-																handleSubmit(courseId, course.data.company.id)
-															}
+												<>
+													<div className="mb-3">
+														<label className="mb-1">Payment Method</label>
+														<Form.Select
+															aria-label="Default select example"
+															onChange={(e) => setPaymentId(e.target.value)}
 														>
-															JOIN COURSE
-														</button>
-													</>
-												)
+															<option>Select payment</option>
+															{!course.data.company
+																? "loading"
+																: course.data.company.payments.map((e, i) => {
+																		return (
+																			<>
+																				<option key={i} value={e.id}>
+																					{e.provider_service} - {e.name}
+																				</option>
+																			</>
+																		);
+																  })}
+														</Form.Select>
+													</div>
+													<button
+														className={`btn w-100 btn-secondary ${styles.btnDetail}`}
+														onClick={() =>
+															handleSubmit(courseId, course.data.company.id)
+														}
+													>
+														JOIN COURSE
+													</button>
+												</>
 											) : filterUserCourse[0].is_approved ? (
 												<>
 													<p className="mb-0">

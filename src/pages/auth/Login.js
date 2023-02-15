@@ -4,7 +4,6 @@ import Auth from "../../components/auth/Auth";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
-import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 
 const LoginElement = () => {

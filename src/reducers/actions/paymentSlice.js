@@ -47,9 +47,13 @@ export const updateUserPayments = createAsyncThunk(
 		const token = localStorage.getItem("access_token");
 		console.log(`${BASE_URL}/pay/${id}`);
 		console.log(`Bearer ${token}`);
-		const response = await axios.put(`${BASE_URL}/pay/${id}`, {
-			headers: { Authorization: `Bearer ${token}` },
-		});
+		const response = await axios.put(
+			`${BASE_URL}/pay/${id}`,
+			{},
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+		);
 
 		return response.data;
 	},

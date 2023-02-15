@@ -96,7 +96,12 @@ const Index = ({ courseData, companyId, setCourse }) => {
 											<>
 												<tr key={i} className={styles.tbody}>
 													<td>{++i}</td>
-													<td>{e.name}</td>
+													<td>
+														{" "}
+														{e.name.length > 38
+															? e.name.substr(0, 38) + "..."
+															: e.name}
+													</td>
 													<td>{e.quota}</td>
 													<td>{e.participant}</td>
 													<td>Rp. {e.price}</td>

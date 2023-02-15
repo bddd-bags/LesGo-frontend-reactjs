@@ -68,7 +68,9 @@ const History = () => {
 														to={`/courses/detail/${e.course.id}`}
 													>
 														<h5 class={`card-title ${styles.fontPoppins}`}>
-															{e.course.name}
+															{e.course.name.length > 38
+																? e.course.name.substr(0, 38) + "..."
+																: e.course.name}
 														</h5>
 													</Link>
 													<div class="d-flex justify-content-between">
@@ -100,7 +102,12 @@ const History = () => {
 															</small>
 														</p>
 													</div>
-													<p class="card-text"> {e.course.description}</p>
+													<p class="card-text">
+														{" "}
+														{e.course.description.length > 80
+															? e.course.description.substr(0, 80) + "...."
+															: e.course.description}
+													</p>
 													<p class="card-text my-2">
 														{" "}
 														<p class="fw-bold">

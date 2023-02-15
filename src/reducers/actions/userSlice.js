@@ -28,6 +28,29 @@ export const findUsers = createAsyncThunk("users/findUsers", async (id) => {
 	return response.data;
 });
 
+export const updateUsers = createAsyncThunk(
+	"users/updateUsers",
+	async ({ id, data }) => {
+		const token = localStorage.getItem("access_token");
+
+		const formData = new FormData();
+		formData.append("username", data.username);
+		formData.append("address", data.address);
+		formData.append("age", data.age);
+		formData.append("gender", data.gender);
+		formData.append("img", data.img);
+
+		const response = await axios.put(`${BASE_URL}`, formData, {
+			headers: {
+				Authorization: `Bearer ${token}`,
+				"Content-Type": "multipart/form-data",
+			},
+		});
+
+		return response.data;
+	},
+);
+
 const usersSlice = createSlice({
 	name: "users",
 	initialState,

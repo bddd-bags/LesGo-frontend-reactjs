@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Footer from "../components/Footer";
 import styles from "./index.module.css";
 import image from "../assets/images/imageHome.png";
-import { Card, Button } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import {
 	getAllCourseActive,
@@ -12,17 +12,22 @@ import {
 } from "../reducers/actions/courseSlice";
 
 const Home = () => {
+	const [token, setToken] = useState(false);
 	const dispacth = useDispatch();
 	const [filterData, setFilterData] = useState([]);
 	const courses = useSelector(getAllCourseActive);
 	const BASE_URL_IMAGE = "http://localhost:3000/images/course";
 
 	useEffect(() => {
+		setToken(Boolean(localStorage.getItem("access_token")));
+	}, []);
+
+	useEffect(() => {
 		dispacth(getCourseActive());
 	}, [dispacth]);
 
 	useEffect(() => {
-		if (!courses.loading) {
+		if (!!courses.data.data) {
 			const result = [];
 			for (let i = 0; i < 3; i++) {
 				result.push(courses.data.data[i]);
@@ -95,63 +100,27 @@ const Home = () => {
 														? e.description.substr(0, 70) + "...."
 														: e.description}
 												</Card.Text>
-												<Link to={`/courses/detail/${e.id}`}>
-													<Button variant="primary">See More</Button>
-												</Link>
+												{!token ? (
+													<>
+														<Link to={`/auth/login`}>
+															<button className="btn btn-primary btn-sm">
+																Join
+															</button>
+														</Link>
+													</>
+												) : (
+													<Link to={`/courses/detail/${e.id}`}>
+														<button className="btn btn-primary btn-sm">
+															See More
+														</button>
+													</Link>
+												)}
 											</Card.Body>
 										</div>
 									</>
 								);
 							})
 						)}
-						{/* <div
-							className="card mx-2"
-							style={{ width: "18rem", border: "none" }}
-						>
-							<div style={{ minHeight: "180px", maxHeight: "180px" }}>
-								<Card.Img
-									variant="top"
-									src="https://via.placeholder.com/100x62"
-								/>
-							</div>
-							<Card.Body>
-								<div>
-									<Card.Title>Flutter Bootcamp</Card.Title>
-									<p className="text-muted">Codecademy</p>
-								</div>
-								<Card.Text>
-									Some quick example text to build on the card title and make up
-									the bulk of the card's content.
-								</Card.Text>
-								<Link to={"/courses/detail"}>
-									<Button variant="primary">See More</Button>
-								</Link>
-							</Card.Body>
-						</div>
-						<div
-							className="card mx-2"
-							style={{ width: "18rem", border: "none" }}
-						>
-							<div style={{ minHeight: "180px", maxHeight: "180px" }}>
-								<Card.Img
-									variant="top"
-									src="https://via.placeholder.com/100x62"
-								/>
-							</div>
-							<Card.Body>
-								<div>
-									<Card.Title>Flutter Bootcamp</Card.Title>
-									<p className="text-muted">Codecademy</p>
-								</div>
-								<Card.Text>
-									Some quick example text to build on the card title and make up
-									the bulk of the card's content.
-								</Card.Text>
-								<Link to={"/courses/detail"}>
-									<Button variant="primary">See More</Button>
-								</Link>
-							</Card.Body>
-						</div> */}
 					</div>
 				</div>
 			</section>

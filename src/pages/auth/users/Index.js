@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 import Index from "../../../components/auth/shared/Index";
 import { AiOutlineUser } from "react-icons/ai";
 import styles from "./index.module.css";
-import { Table, Badge } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Table } from "react-bootstrap";
 import Image from "react-bootstrap/Image";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers, getUsers } from "../../../reducers/actions/userSlice";
@@ -11,7 +10,6 @@ import accountLogo from "../../../assets/images/account.png";
 
 const User = () => {
 	const BASE_URL_IMAGE = "http://localhost:3000/images/profile";
-	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const users = useSelector(getAllUsers);
 
@@ -64,27 +62,6 @@ const User = () => {
 													</>
 												);
 										  })}
-									{/* <tr className={styles.tbody}>
-										<td>
-											<Image
-												style={{ maxWidth: "38px" }}
-												roundedCircle
-												src="https://via.placeholder.com/100"
-											/>
-										</td>
-										<td>Mark heheh</td>
-										<td>Dicoding</td>
-										<td>Bandung</td>
-										<td>
-											<Badge
-												className={`${styles.badgeDanger} rounded-0`}
-												onClick={() => navigate("/dashboard/companies/detail")}
-												bg=""
-											>
-												Delete
-											</Badge>
-										</td>
-									</tr> */}
 								</tbody>
 							</Table>
 						</div>

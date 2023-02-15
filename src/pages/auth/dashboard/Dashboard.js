@@ -7,14 +7,17 @@ import { MdOutlineApartment } from "react-icons/md";
 import Index from "../../../components/auth/shared/Index";
 import { getCompanies, getAllCompanies } from "../../../reducers/actions/companySlice";
 import { useDispatch, useSelector } from "react-redux";
+import { getUsers, getAllUsers } from "../../../reducers/actions/userSlice";
 
 const DashboardElement = () => {
-  const dispatch = useDispatch();
-  const companies = useSelector(getAllCompanies);
+	const dispatch = useDispatch();
+	const companies = useSelector(getAllCompanies);
+	const users = useSelector(getAllUsers);
 
-  useEffect(() => {
-    dispatch(getCompanies())
-  }, [dispatch]);
+	useEffect(() => {
+		dispatch(getCompanies());
+		dispatch(getUsers());
+	}, [dispatch]);
 
 	return (
 		<>
@@ -29,11 +32,16 @@ const DashboardElement = () => {
 								className={styles.cardImgAbsolute}
 								alt="circle"
 							/>
-							<h4 className={`${styles.fontWeightNormal} mb-3 d-flex justify-content-between`}>
+							<h4
+								className={`${styles.fontWeightNormal} mb-3 d-flex justify-content-between`}
+							>
 								Users
 								<FaHouseUser />
 							</h4>
-							<h2 className="mb-5">95,5741</h2>
+							<h2 className="mb-5">
+								{" "}
+								{users.loading ? "0" : users.data.length}
+							</h2>
 							<h6 className="card-text">Total User joined</h6>
 						</div>
 					</div>
@@ -52,7 +60,9 @@ const DashboardElement = () => {
 								Partners
 								<MdOutlineApartment />
 							</h4>
-							<h2 className="mb-5">{companies.loading ? '0' : companies.data.length}</h2>
+							<h2 className="mb-5">
+								{companies.loading ? "0" : companies.data.length}
+							</h2>
 							<h6 className="card-text">Total Company Joined</h6>
 						</div>
 					</div>

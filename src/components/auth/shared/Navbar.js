@@ -4,8 +4,10 @@ import styles from "./index.module.css";
 import { AiFillHome, AiOutlineUser } from "react-icons/ai";
 import { TiFlowSwitch } from "react-icons/ti";
 import { SiCoursera } from "react-icons/si";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import SpinnerComponent from "./Spinner";
+import accountLogo from "../../../assets/images/account.png";
+import jwtDecode from "jwt-decode";
 
 const NavbarMenu = ({ role }) => {
 	const navigate = useNavigate();
@@ -98,12 +100,15 @@ const NavbarComponent = () => {
 	const [token] = useState(localStorage.getItem("access_token"));
 	const [username] = useState(localStorage.getItem("username"));
 	const [role] = useState(localStorage.getItem("role"));
+	const [userId, setUserId] = useState();
 	const navigate = useNavigate();
 
 	useEffect(() => {
 		if (!token) {
 			return navigate("/auth/login");
 		}
+		const getPayload = jwtDecode(token);
+		setUserId(getPayload.id);
 	}, [token, navigate]);
 
 	const handleLogout = (e) => {
@@ -119,7 +124,7 @@ const NavbarComponent = () => {
 			<>
 				<Navbar className={styles.navSection} bg="white" expand="lg">
 					<Container>
-						<Navbar.Brand href="#home">
+						<Navbar.Brand onClick={() => navigate("/")}>
 							<h2 className="mb-0" style={{ color: "#6d8fff" }}>
 								LESGO
 							</h2>
@@ -127,12 +132,39 @@ const NavbarComponent = () => {
 						<Navbar.Toggle aria-controls="basic-navbar-nav" />
 						<Navbar.Collapse id="basic-navbar-nav">
 							<Nav className="ms-auto">
+								<div className="d-block d-lg-none">
+									{Number(role) !== 1 ? (
+										<>
+											<NavLink
+												to={"/dashboard/companies"}
+												className={`px-3 ${styles.navbarLink} nav-link`}
+											>
+												Companies
+											</NavLink>
+										</>
+									) : (
+										<>
+											<NavLink
+												to={"/dashboard/users"}
+												className={`px-3 ${styles.navbarLink} nav-link`}
+											>
+												Users
+											</NavLink>
+											<NavLink
+												to={"/dashboard/partners"}
+												className={`px-3 ${styles.navbarLink} nav-link`}
+											>
+												Partners
+											</NavLink>
+										</>
+									)}
+								</div>
 								<NavDropdown
 									title={
 										<>
 											<div className="d-inline">
 												<img
-													src={"https://via.placeholder.com/150"}
+													src={accountLogo}
 													alt=""
 													className="me-1 rounded-circle"
 													style={{ maxWidth: "28px" }}
@@ -149,9 +181,13 @@ const NavbarComponent = () => {
 								>
 									{Number(role) !== 1 ? (
 										<>
-											{" "}
 											<NavDropdown.Item
-												onClick={() => navigate("/users/profiles")}
+												onClick={() => navigate("/dashboard/courses/activity")}
+											>
+												My Courses
+											</NavDropdown.Item>
+											<NavDropdown.Item
+												onClick={() => navigate(`/users/profiles/${userId}`)}
 											>
 												Profile
 											</NavDropdown.Item>
@@ -165,7 +201,7 @@ const NavbarComponent = () => {
 												Dashboard
 											</NavDropdown.Item>
 											<NavDropdown.Item
-												onClick={() => navigate("/users/profiles")}
+												onClick={() => navigate(`/users/profiles/${userId}`)}
 											>
 												Profile
 											</NavDropdown.Item>

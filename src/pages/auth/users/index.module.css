@@ -43,19 +43,3 @@
   font-size: 13px !important;
   cursor: pointer !important;
 }
-
-.badgeDanger {
-  border: 1px solid #e44747 !important;
-	/* border: none !important; */
-	color: #e44747 !important;
-  padding: 7px 10px;
-  font-size: 13px !important;
-  cursor: pointer !important;
-}
-
-.badgeDanger:hover {
-  border: 1px solid #e44747 !important;
-  background: #d82020 !important;
-	color: #fff !important;
-  font-size: 13px !important;
-}

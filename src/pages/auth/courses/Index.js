@@ -53,7 +53,7 @@ const Index = ({ courseData, companyId, setCourse }) => {
 	}
 	return (
 		<>
-			{!courseData.length ? (
+			{!courseData ? (
 				<BlankData
 					image={course}
 					link={`/dashboard/add-course/${companyId}`}
@@ -132,13 +132,23 @@ const Index = ({ courseData, companyId, setCourse }) => {
 															</Dropdown.Toggle>
 
 															<Dropdown.Menu>
-																<Dropdown.Item href="#/action-1">
+																<Dropdown.Item
+																	onClick={() =>
+																		navigate(`/dashboard/participants/${e.id}`)
+																	}
+																>
 																	List Participant
 																</Dropdown.Item>
-																<Dropdown.Item onClick={() => navigate(`/dashboard/update-course/${e.id}`)}>
+																<Dropdown.Item
+																	onClick={() =>
+																		navigate(`/dashboard/update-course/${e.id}`)
+																	}
+																>
 																	Edit
 																</Dropdown.Item>
-																<Dropdown.Item onClick={() => handleDelete(e.id)}>
+																<Dropdown.Item
+																	onClick={() => handleDelete(e.id)}
+																>
 																	Delete
 																</Dropdown.Item>
 															</Dropdown.Menu>

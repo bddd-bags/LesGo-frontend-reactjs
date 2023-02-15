@@ -23,25 +23,28 @@ const LoginElement = () => {
 
   const login = async(data) => {
     try {
-      const response = await axios.post('http://localhost:3000/api/login', data)
-      localStorage.setItem('access_token', response.data.data.access_token);
-      localStorage.setItem('username', response.data.data.user);
-      localStorage.setItem('role', response.data.data.role_id);
-      const getRole = response.data.data.role_id
+			const response = await axios.post(
+				"http://localhost:3000/api/login",
+				data,
+			);
+			localStorage.setItem("access_token", response.data.data.access_token);
+			localStorage.setItem("username", response.data.data.user);
+			localStorage.setItem("role", response.data.data.role_id);
+			const getRole = response.data.data.role_id;
 			// await Swal.fire({
-			// 	position: 'center',
-			// 	icon: 'success',
+			// 	position: "center",
+			// 	icon: "success",
 			// 	showConfirmButton: false,
-			// 	title: 'Success to login',
-			// 	timer: 1500
-			// })
-			Number(getRole) !== 1 ? navigate('/') : navigate('/dashboard');
-    } catch (error) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: error.response.data.message.toUpperCase(),
-      })
+			// 	title: "Success to login",
+			// 	timer: 1500,
+			// });
+			Number(getRole) !== 1 ? navigate("/") : navigate("/dashboard");
+		} catch (error) {
+      return Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: error.response.data.message.message.toUpperCase(),
+			});
     }
   }
 

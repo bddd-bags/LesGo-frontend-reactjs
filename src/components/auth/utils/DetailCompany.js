@@ -42,16 +42,20 @@ const Header = ({data}) => {
 const Footer = ({ link }) => {
 	return (
 		<>
-			<div className="d-flex px-5 pb-4">
-				<Link to={link} style={{ textDecoration: "none" }}>
-					<p className="d-flex align-items-center">
-						<span className="me-2">
-							<AiOutlineLeftCircle size={25} />
-						</span>
-						<span style={{ borderBottom: "1px solid blue" }}>Back</span>
-					</p>
-				</Link>
-			</div>
+			{!link ? (
+				" "
+			) : (
+				<div className="d-flex px-5 pb-4">
+					<Link to={link} style={{ textDecoration: "none" }}>
+						<p className="d-flex align-items-center">
+							<span className="me-2">
+								<AiOutlineLeftCircle size={25} />
+							</span>
+							<span style={{ borderBottom: "1px solid blue" }}>Back</span>
+						</p>
+					</Link>
+				</div>
+			)}
 		</>
 	);
 };

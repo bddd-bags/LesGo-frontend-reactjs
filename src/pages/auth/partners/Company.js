@@ -23,7 +23,7 @@ const Company = () => {
 	const [payment, setPayment] = useState(false);
 	const [course, setCourse] = useState(false);
 	const company = useSelector(getCompanyPartner);
-
+	console.log(company);
 	useEffect(() => {
 		if (payment) {
 			setPayment(false);
@@ -46,7 +46,7 @@ const Company = () => {
 						/>
 					}
 				/>
-			) : !company.data.id ? (
+			) : !company.data ? (
 				<Index
 					element={
 						<BlankData
@@ -111,7 +111,7 @@ const Company = () => {
 										setCourse={setCourse}
 									/>
 								}
-								link={"/dashboard/companies"}
+								// link={"/dashboard/companies"}
 								data={company.data}
 							/>
 						}

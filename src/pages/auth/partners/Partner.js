@@ -63,55 +63,73 @@ const Partner = () => {
 									</tr>
 								</thead>
 								<tbody>
-									{!companies.data.length
-										? "loading"
-										: companies.data.map((e, i) => {
-												return (
-													<>
-														<tr key={e.id} className={styles.tbody}>
-															<td>{++i}</td>
-															<td>{e.name}</td>
-															<td>{e.address}</td>
-															<td>{e.phone}</td>
-															<td>{e.user_id}</td>
-															<td>
-																{e.is_approved ? (
-																	<Badge
-																		className={`${styles.badgeSuccess} rounded-0`}
-																		onClick={() =>
-																			handleApproved(e.id, e.is_approved)
-																		}
-																		bg=""
-																	>
-																		Approved
-																	</Badge>
-																) : (
-																	<Badge
-																		className={`${styles.badgeWarning} rounded-0`}
-																		onClick={() =>
-																			handleApproved(e.id, e.is_approved)
-																		}
-																		bg="secondary"
-																	>
-																		Pending
-																	</Badge>
-																)}
-															</td>
-															<td>
+									{companies.loading ? (
+										<tr>
+											<td
+												colSpan={7}
+												className="text-center py-3 text-uppercase"
+											>
+												Loading
+											</td>
+										</tr>
+									) : !companies.data.length ? (
+										<tr>
+											<td
+												colSpan={7}
+												className="text-center py-3 text-uppercase"
+											>
+												No Data
+											</td>
+										</tr>
+									) : (
+										companies.data.map((e, i) => {
+											return (
+												<>
+													<tr key={e.id} className={styles.tbody}>
+														<td>{++i}</td>
+														<td>{e.name}</td>
+														<td>{e.address}</td>
+														<td>{e.phone}</td>
+														<td>{e.user.email}</td>
+														<td>
+															{e.is_approved ? (
 																<Badge
-																	className={`${styles.badgeView} rounded-0`}
+																	className={`${styles.badgeSuccess} rounded-0`}
 																	onClick={() =>
-																		navigate("/dashboard/companies/" + e.id)
+																		handleApproved(e.id, e.is_approved)
 																	}
 																	bg=""
 																>
-																	View
+																	Approved
 																</Badge>
-															</td>
-														</tr>
-													</>
-												);
-										  })}
+															) : (
+																<Badge
+																	className={`${styles.badgeWarning} rounded-0`}
+																	onClick={() =>
+																		handleApproved(e.id, e.is_approved)
+																	}
+																	bg="secondary"
+																>
+																	Pending
+																</Badge>
+															)}
+														</td>
+														<td>
+															<Badge
+																className={`${styles.badgeView} rounded-0`}
+																onClick={() =>
+																	navigate("/dashboard/companies/" + e.id)
+																}
+																bg=""
+															>
+																View
+															</Badge>
+														</td>
+													</tr>
+												</>
+											);
+										})
+									)}
 								</tbody>
 							</Table>
 						</div>

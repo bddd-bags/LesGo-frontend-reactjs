@@ -8,18 +8,20 @@ import Dashboard from "./pages/auth/dashboard/Dashboard";
 import DashboardPartner from "./pages/auth/partners/Partner"
 import Profile from "./pages/auth/profile/Profile";
 import Company from './pages/auth/partners/Company'
-// import Detail from "./pages/auth/partners/Detail";
+import Detail from "./pages/Detail";
 // import {DetailDashboard} from "./pages/auth/partners/Detail"
 import AddCompany from "./pages/auth/partners/AddCompany";
 import ProfileCompany from "./pages/auth/partners/Profile";
-import User from './pages/auth/users/Index'
+import User from "./pages/auth/users/Index";
 import UpdateCompany from "./pages/auth/partners/UpdateCompany";
-import AddPayment from './pages/auth/payments/Add'
+import AddPayment from "./pages/auth/payments/Add";
 import Participant from "./pages/auth/courses/Participant";
 import AddCourse from "./pages/auth/courses/Add";
 import UpdatePayment from "./pages/auth/payments/Update";
 import UpdateCourse from "./pages/auth/courses/Update";
 import Activity from "./pages/auth/courses/users/Activity";
+import History from "./pages/auth/courses/users/History";
+import Course from "./pages/Course";
 
 function App() {
 	return (
@@ -31,20 +33,42 @@ function App() {
 				<Route path="/auth/register" element={<Register />} />
 				<Route path="/dashboard" element={<Dashboard />} />
 				<Route path="/dashboard/partners" element={<DashboardPartner />} />
-				<Route path="/users/profiles" element={<Profile />} />
+				<Route path="/users/profiles/:userId" element={<Profile />} />
 				<Route path="/dashboard/users" element={<User />} />
 				<Route path="/dashboard/companies" element={<Company />} />
-				<Route path="/dashboard/companies/:companyId" element={<ProfileCompany />} />
+				<Route
+					path="/dashboard/companies/:companyId"
+					element={<ProfileCompany />}
+				/>
 				<Route path="/dashboard/add-company" element={<AddCompany />} />
-				<Route path="/dashboard/update-company/:companyId" element={<UpdateCompany />} />
-				<Route path="/dashboard/add-payment/:companyId" element={<AddPayment />} />
-				<Route path="/dashboard/update-payment/:paymentId" element={<UpdatePayment />} />
-				<Route path="/dashboard/add-course/:companyId" element={<AddCourse />} />
-				<Route path="/dashboard/update-course/:courseId" element={<UpdateCourse />} />
+				<Route
+					path="/dashboard/update-company/:companyId"
+					element={<UpdateCompany />}
+				/>
+				<Route
+					path="/dashboard/add-payment/:companyId"
+					element={<AddPayment />}
+				/>
+				<Route
+					path="/dashboard/update-payment/:paymentId"
+					element={<UpdatePayment />}
+				/>
+				<Route
+					path="/dashboard/add-course/:companyId"
+					element={<AddCourse />}
+				/>
+				<Route
+					path="/dashboard/update-course/:courseId"
+					element={<UpdateCourse />}
+				/>
 				<Route path="/dashboard/courses/activity" element={<Activity />} />
-				<Route path="/dashboard/participants" element={<Participant />} />
-				{/* <Route  path="/companies/detail" element={<Detail />} /> */}
-				
+				<Route path="/dashboard/courses/history" element={<History />} />
+				<Route
+					path="/dashboard/participants/:courseId"
+					element={<Participant />}
+				/>
+				<Route path="/courses" element={<Course />} />
+				<Route path="/courses/detail/:courseId" element={<Detail />} />
 			</Routes>
 		</>
 		// <div className="App">

@@ -21,7 +21,7 @@ const BlankData = ({ image, link, h1, h2, btn }) => {
 								<p>{h2}</p>
 								<Link to={link}>
 									<button
-										className={`btn btn-primary ${styles.paymentBtnRegist}`}
+										className={`btn btn-primary ${styles.blankBtnRegist}`}
 									>
 										{btn}
 									</button>

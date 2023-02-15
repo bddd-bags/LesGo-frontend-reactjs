@@ -8,3 +8,19 @@
   font-family: 'ubuntu-regular', sans-serif;
   /* box-shadow: rgba(207, 218, 228, 0.658) 0px 0px 24px !important; */
 }
+
+.featuredImage {
+  max-height: 200px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.form {
+  font-size: 15px !important;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.form input:focus {
+  box-shadow: none !important;
+  border: 1px solid #d3d3d3
+}

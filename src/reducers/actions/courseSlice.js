@@ -76,21 +76,63 @@ export const deleteCourses = createAsyncThunk('courses/deleteCourses', async(id)
   return response.data;
 })
 
-const coursesSlice = createSlice({
-  name: 'courses',
-  initialState,
-  extraReducers: {
-    [findCourses.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.data = action.payload.data
-    },
-    [findCourses.rejected]: (state, action) => {
-      state.loading = false
-      state.error = action.error.message
-    }
-  }
-})
+export const getCourseActive = createAsyncThunk(
+	"courses/getCourseActive",
+	async (page) => {
+		page = page || 1;
+		const response = await axios.get(`${BASE_URL}?page=${page}`);
+		return response.data;
+	},
+);
 
-export const findOneCourses = (state) => state.course
+export const findCoursePartners = createAsyncThunk(
+	"courses/findCoursePartners",
+	async (id) => {
+		const token = localStorage.getItem("access_token");
+
+		const response = await axios.get(`${BASE_URL}/partners/${id}`, {
+			headers: { Authorization: `Bearer ${token}` },
+		});
+
+		return response.data;
+	},
+);
+
+const coursesSlice = createSlice({
+	name: "courses",
+	initialState,
+	extraReducers: {
+		[findCourses.fulfilled]: (state, action) => {
+			state.loading = false;
+			state.data = action.payload.data;
+		},
+		[findCourses.rejected]: (state, action) => {
+			state.loading = false;
+			state.error = action.error.message;
+		},
+		[getCourseActive.fulfilled]: (state, action) => {
+			state.loading = false;
+			state.data = action.payload.data;
+		},
+		[getCourseActive.rejected]: (state, action) => {
+			state.loading = false;
+			state.error = action.error.message;
+		},
+		[findCoursePartners.fulfilled]: (state, action) => {
+			state.loading = false;
+			state.data = action.payload.data;
+		},
+		[findCoursePartners.rejected]: (state, action) => {
+			state.loading = false;
+			state.error = action.error.message;
+		},
+	},
+});
+
+export const findOneCourses = (state) => state.course;
+
+export const getAllCourseActive = (state) => state.course;
+
+export const findOneCoursePartners = (state) => state.course;
 
 export default coursesSlice.reducer

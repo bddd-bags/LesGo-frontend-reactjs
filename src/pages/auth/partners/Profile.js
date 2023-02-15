@@ -23,49 +23,66 @@ const Profile = () => {
 
   return (
 		<>
-			{company.loading ? <Index element={<Spinner size={80} icon={<TbListDetails color="white" />}
-			name={"Detail Company"}/>}  /> : !company.data.id ? 'please wait' : <>
-			<Index
-				element={
-					<DetailCompany
-						profilePage={
-							<>
-								<div>
-									<div className="px-5">
+			{company.loading ? (
+				<Index
+					element={
+						<Spinner
+							size={80}
+							icon={<TbListDetails color="white" />}
+							name={"Detail Company"}
+						/>
+					}
+				/>
+			) : !company.data.id ? (
+				"please wait"
+			) : (
+				<>
+					<Index
+						element={
+							<DetailCompany
+								profilePage={
+									<>
 										<div>
-											<div className="d-flex justify-content-end px-2">
-												<Button
-													className={`${styles.btnPrimary} text-white fw-bold`}
-													variant="warning"
-													size="sm"
-													onClick={() => navigate(`/dashboard/update-company/${companyId}`)}
-												>
-													Update
-												</Button>
-											</div>
-											<div
-												className={`py-3 ${styles.textJustify}`}
-												style={{ textIndent: "50px" }}
-											>
-												<p style={{ letterSpacing: "0.7px" }}>
-													{company.data.description}
-												</p>
+											<div className="px-5">
+												<div>
+													<div className="d-flex justify-content-end px-2">
+														<Button
+															className={`${styles.btnPrimary} text-white fw-bold`}
+															variant="warning"
+															size="sm"
+															onClick={() =>
+																navigate(
+																	`/dashboard/update-company/${companyId}`,
+																)
+															}
+														>
+															Update
+														</Button>
+													</div>
+													<div
+														className={`py-3 ${styles.textJustify}`}
+														style={{ textIndent: "50px" }}
+													>
+														<p style={{ letterSpacing: "0.7px" }}>
+															{company.data.description}
+														</p>
+													</div>
+												</div>
 											</div>
 										</div>
-									</div>
-								</div>
-							</>
+									</>
+								}
+								paymentPage={<Payment paymentData={company.data.payments} />}
+								coursePage={<Course courseData={company.data.courses} />}
+								data={company.data}
+								link={"/dashboard/partners"}
+							/>
 						}
-						paymentPage={<Payment paymentData={company.data.payments} />}
-						coursePage={<Course courseData={company.data.courses} />}
-						data={company.data}
-						link={"/dashboard/companies"}
+						icon={<TbListDetails color="white" />}
+						name="Detail Company"
 					/>
-				}
-				icon={<TbListDetails color="white" />}
-				name="Detail Company"
-			/>
-		</>}
+				</>
+			)}
 		</>
 	);
 	// return (<>hai</>)

@@ -62,3 +62,126 @@
 	font-size: 15px;
 	color: #444444;
 }
+
+/* courses */
+/* .backgroundCourse {
+	background: #f3f5fa56;
+} */
+
+.fontPoppins {
+  font-family: 'Poppins';
+}
+
+.featuredImage {
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.featuredImageHome {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.cardHeader {
+  background: #f0f0f0 !important;
+}
+
+/* partners */
+
+.Image {
+  max-width: 150px;
+  max-height: 150px;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* detail */
+.backgroundDetail {
+  background-color: #f2f4f850;
+}
+
+.detailRoot {
+  font-family: 'Quicksand', sans-serif;
+	padding: 60px 0;
+  min-height: 80vh;
+}
+
+.textJustify {
+	text-align: justify;
+}
+
+.detailImage {
+  max-width: 300px;
+  min-width: 300px !important;
+  max-height: 300px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.btnDetail {
+  border-radius: 0px !important;
+}
+
+.cardStyle {
+  border: 0 !important;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px !important;
+}
+
+select {
+  box-shadow: none !important;
+  border: 1px solid #dcdcdc !important;
+  color: #353535;
+}
+
+select:focus {
+  box-shadow: none !important;
+  border: 1px solid #dcdcdc !important;
+  color: #353535;
+}
+
+.QuickSand {
+  font-family: 'Quicksand', sans-serif;
+}
+
+.thead th {
+  padding: 15px 30px 15px 15px !important;
+  font-size: 14px !important;
+  text-transform: capitalize !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+.tbody td {
+  padding: 15px !important;
+  font-size: 14px !important;
+  /* text-transform: capitalize !important; */
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+.badgeDanger {
+  width: 100% !important;
+  border: 1px solid #fe7c96;
+  /* background: #f84f71 !important; */
+  color: #f84f71 !important;
+  padding: 15px !important;
+  font-size: 13px !important;
+  cursor: pointer !important;
+}
+
+.badgeDanger:hover {
+  border: 1px solid #fe7c96;
+  background: #f84f71 !important;
+  color: #fff !important;
+  font-size: 13px !important;
+  cursor: pointer !important;
+}
+
+.pagination a {
+  padding-left: 25px !important;
+  padding-right:  25px !important;
+}

@@ -41,21 +41,45 @@ export const findPayments = createAsyncThunk(
 	},
 );
 
-export const deletePayments = createAsyncThunk('payments/deletePayments', async(id) => {
-	const token = localStorage.getItem('access_token');
+export const updateUserPayments = createAsyncThunk(
+	"payments/createUserPayments",
+	async (id) => {
+		const token = localStorage.getItem("access_token");
+		console.log(`${BASE_URL}/pay/${id}`);
+		console.log(`Bearer ${token}`);
+		const response = await axios.put(`${BASE_URL}/pay/${id}`, {
+			headers: { Authorization: `Bearer ${token}` },
+		});
 
-	const response = await axios.delete(`${BASE_URL}/${id}`, {headers: {Authorization: `Bearer ${token}`}})
+		return response.data;
+	},
+);
 
-	return response.data
-})
+export const deletePayments = createAsyncThunk(
+	"payments/deletePayments",
+	async (id) => {
+		const token = localStorage.getItem("access_token");
 
-export const updatePayments = createAsyncThunk('payments/updatePayments', async({data, id}) => {
-	const token = localStorage.getItem('access_token');
+		const response = await axios.delete(`${BASE_URL}/${id}`, {
+			headers: { Authorization: `Bearer ${token}` },
+		});
 
-	const response = await axios.put(`${BASE_URL}/${id}`, data, {headers: {Authorization: `Bearer ${token}`}})
+		return response.data;
+	},
+);
 
-	return response.data
-})
+export const updatePayments = createAsyncThunk(
+	"payments/updatePayments",
+	async ({ data, id }) => {
+		const token = localStorage.getItem("access_token");
+
+		const response = await axios.put(`${BASE_URL}/${id}`, data, {
+			headers: { Authorization: `Bearer ${token}` },
+		});
+
+		return response.data;
+	},
+);
 
 const paymentsSlice = createSlice({
 	name: "payments",

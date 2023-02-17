@@ -144,8 +144,14 @@ const Footer = () => {
 						. All Rights Reserved
 					</div>
 					<div className={styles.credits}>
-						Development by <Link to="https://github.com/">Arsya</Link>{" "}
-						<span>&</span> <Link to="https://github.com/">Bagas</Link>
+						Development by{" "}
+						<Link to="https://github.com/" className="text-white fw-bold">
+							Arsya
+						</Link>{" "}
+						<span>&</span>{" "}
+						<Link to="https://github.com/" className="text-white fw-bold">
+							Bagas
+						</Link>
 					</div>
 				</div>
 			</footer>

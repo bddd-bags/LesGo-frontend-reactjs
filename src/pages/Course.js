@@ -9,10 +9,12 @@ import {
 	getCourseActive,
 } from "../reducers/actions/courseSlice";
 import { Pagination } from "react-bootstrap";
+import emptyBox from "../assets/images/emptyBox.png";
 
 const Course = () => {
-  const [token, setToken] = useState(false);
+	const [token, setToken] = useState(false);
 	const [counter, setCounter] = useState(1);
+	const [search, setSearch] = useState("");
 	const dispacth = useDispatch();
 	const courses = useSelector(getAllCourseActive);
 	const BASE_URL_IMAGE = "http://localhost:3000/images/course";
@@ -22,8 +24,11 @@ const Course = () => {
 	}, []);
 
 	useEffect(() => {
-		dispacth(getCourseActive(counter));
-	}, [dispacth, counter]);
+		if (Boolean(search)) {
+			setCounter(1);
+		}
+		dispacth(getCourseActive({ page: counter, search }));
+	}, [dispacth, counter, search]);
 
 	const handleNext = () => {
 		counter >= Math.ceil(courses.data.count_data / courses.data.per_page)
@@ -33,6 +38,10 @@ const Course = () => {
 
 	const handlePrevious = () => {
 		counter <= 1 ? setCounter(1) : setCounter(counter - 1);
+	};
+
+	const handleSearch = (e) => {
+		e.preventDefault();
 	};
 
 	const rupiah = (number) => {
@@ -57,11 +66,29 @@ const Course = () => {
 				<div className="container">
 					<div className="w-100 row justify-content-around">
 						<div className="col-md-8 px-0">
-							{courses.loading
-								? "loading"
-								: !courses.data.data
-								? "Course Not Found"
-								: courses.data.data.map((e, i) => {
+							<div className="" style={{ minHeight: "60vh" }}>
+								{courses.loading ? (
+									"loading"
+								) : !courses.data.data ? (
+									"loading"
+								) : !courses.data.data.length ? (
+									<>
+										<div
+											className={`d-flex align-items-center flex-wrap justify-content-center ${styles.QuickSand}`}
+											style={{ minHeight: "40vh" }}
+										>
+											<img
+												src={emptyBox}
+												style={{ maxWidth: "200px" }}
+												alt=""
+											/>
+											<h4 className="text-uppercase w-100 text-center">
+												Courses not found!
+											</h4>
+										</div>
+									</>
+								) : (
+									courses.data.data.map((e, i) => {
 										return (
 											<>
 												<div key={i} className="card">
@@ -132,7 +159,10 @@ const Course = () => {
 												</div>
 											</>
 										);
-								  })}
+									})
+								)}
+							</div>
+
 							<div className="mt-3 d-flex justify-content-end pt-2">
 								<Pagination className={`${styles.pagination} mb-0`}>
 									<Pagination.Prev onClick={handlePrevious} />
@@ -154,13 +184,19 @@ const Course = () => {
 									</div>
 								</div>
 								<div className="mb-3">
-									<form className="d-flex" action="" method="get">
+									<form
+										onSubmit={handleSearch}
+										className="d-flex"
+										action=""
+										method="get"
+									>
 										<input
 											type="text"
 											className="form-control ms-4 me-1"
-											name="keyword"
 											id=""
 											placeholder="Search...."
+											value={search}
+											onChange={(e) => setSearch(e.target.value)}
 										/>
 										<button className="btn btn-primary btn-sm px-4 me-4 ms-1">
 											Search

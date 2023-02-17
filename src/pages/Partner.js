@@ -9,8 +9,9 @@ const Partner = () => {
 	const dispatch = useDispatch();
 	const BASE_URL_IMAGE = "http://localhost:3000/images/company";
 	const companiesApproved = useSelector((state) => {
-		if (!!state.company.data.length) {
-			return state.company.data.filter((e) => e.is_approved === true);
+		if (!!state.company.data) {
+			if (!!state.company.data.length)
+				return state.company.data.filter((e) => e.is_approved === true);
 		}
 		return [];
 	});
@@ -33,13 +34,15 @@ const Partner = () => {
 				</div>
 				<div className="container">
 					<div className="w-100 flex-wrap d-flex justify-content-around">
-						{!companiesApproved.length
+						{!companiesApproved
+							? ""
+							: !companiesApproved.length
 							? ""
 							: companiesApproved.map((e, i) => {
 									return (
 										<>
 											<div key={i} className="text-center m-2">
-												<div className={`${styles.Image}`}>
+												<div className={`${styles.Image} mx-auto`}>
 													<img
 														src={`${BASE_URL_IMAGE}/${e.img}`}
 														alt=""

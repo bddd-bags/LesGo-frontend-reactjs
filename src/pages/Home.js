@@ -23,7 +23,7 @@ const Home = () => {
 	}, []);
 
 	useEffect(() => {
-		dispacth(getCourseActive());
+		dispacth(getCourseActive({ page: 1, search: "" }));
 	}, [dispacth]);
 
 	useEffect(() => {

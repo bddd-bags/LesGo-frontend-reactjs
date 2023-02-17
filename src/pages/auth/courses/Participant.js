@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Table, Badge, Button } from "react-bootstrap";
+import { Table, Badge, Dropdown } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import styles from "./index.module.css";
 import Index from "../../../components/auth/shared/Index";
@@ -64,7 +64,9 @@ const Participant = () => {
 		return (
 			<>
 				<div className="row justify-content-center">
-					<div className={`col-11 col-md-12 ${styles.sectionRoot}`}>
+					<div
+						className={`col-11 col-md-12 ${styles.sectionRoot} ${styles.QuickSand}`}
+					>
 						<h5 className="mb-3">Participant {course.data.name}</h5>
 						<div className="py-3">
 							<Table responsive hover size="sm">
@@ -85,8 +87,17 @@ const Participant = () => {
 												Loading
 											</td>
 										</tr>
+									) : !course.data.user_courses ? (
+										<>
+											<tr>
+												<td colSpan={6} className="py-3 text-center">
+													Loading
+												</td>
+											</tr>
+										</>
 									) : !course.data.user_courses.length ? (
 										<>
+											{" "}
 											<tr>
 												<td colSpan={6} className="py-3 text-center">
 													No Data
@@ -142,15 +153,31 @@ const Participant = () => {
 														<td>
 															{e.is_approved === 1 ? (
 																<>
-																	<Button
-																		className={`rounded-0 mx-2`}
-																		size="sm"
-																		variant="outline-primary"
-																		onClick={() => handleDecisions(e.id, 2)}
-																	>
-																		Approved
-																	</Button>
-																	<Button
+																	<Dropdown>
+																		<Dropdown.Toggle
+																			variant="primary"
+																			size="sm"
+																			id="dropdown-basic"
+																		>
+																			Actions
+																		</Dropdown.Toggle>
+
+																		<Dropdown.Menu
+																			className={`${styles.QuickSand} ${styles.fontSizeDropdown}`}
+																		>
+																			<Dropdown.Item
+																				onClick={() => handleDecisions(e.id, 2)}
+																			>
+																				Approved
+																			</Dropdown.Item>
+																			<Dropdown.Item
+																				onClick={() => handleDecisions(e.id, 3)}
+																			>
+																				Reject
+																			</Dropdown.Item>
+																		</Dropdown.Menu>
+																	</Dropdown>
+																	{/* <Button
 																		className={`rounded-0 mx-2`}
 																		variant="outline-danger"
 																		size="sm"
@@ -158,6 +185,14 @@ const Participant = () => {
 																	>
 																		Reject
 																	</Button>
+																	<Button
+																		className={`rounded-0 mx-2`}
+																		size="sm"
+																		variant="outline-primary"
+																		onClick={() => handleDecisions(e.id, 2)}
+																	>
+																		Approved
+																	</Button> */}
 																</>
 															) : (
 																<Badge

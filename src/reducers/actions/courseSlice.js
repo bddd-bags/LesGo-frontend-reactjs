@@ -78,9 +78,12 @@ export const deleteCourses = createAsyncThunk('courses/deleteCourses', async(id)
 
 export const getCourseActive = createAsyncThunk(
 	"courses/getCourseActive",
-	async (page) => {
+	async ({ page, search }) => {
 		page = page || 1;
-		const response = await axios.get(`${BASE_URL}?page=${page}`);
+		search = search || "";
+		const response = await axios.get(
+			`${BASE_URL}?page=${page}&search=${search}`,
+		);
 		return response.data;
 	},
 );

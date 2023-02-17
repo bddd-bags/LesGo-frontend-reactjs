@@ -13,6 +13,13 @@ const Index = ({ courseData, companyId, setCourse }) => {
 	const dispatch = useDispatch();
 
 	const handleDelete = (id) => {
+		if (!setCourse) {
+			return Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "You cannot change this!",
+			});
+		}
 		Swal.fire({
 			title: "Do you want to delete the Course?",
 			showCancelButton: true,
@@ -20,7 +27,7 @@ const Index = ({ courseData, companyId, setCourse }) => {
 			confirmButtonColor: "#d33",
 		}).then(async (result) => {
 			if (result.isConfirmed) {
-				const result = await dispatch(deleteCourses(id))
+				const result = await dispatch(deleteCourses(id));
 				if (result.meta.requestStatus === "fulfilled") {
 					Swal.fire({
 						position: "center",
@@ -29,7 +36,7 @@ const Index = ({ courseData, companyId, setCourse }) => {
 						showConfirmButton: false,
 						timer: 1500,
 					});
-					setCourse(true)
+					setCourse(true);
 				} else {
 					return Swal.fire({
 						icon: "error",
@@ -39,21 +46,41 @@ const Index = ({ courseData, companyId, setCourse }) => {
 				}
 			}
 		});
-	}
+	};
 
 	const handleStatus = async (id, is_active) => {
-		await dispatch(statusCourses({is_active : !is_active, id}))
+		if (!setCourse) {
+			return Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "You cannot change this!",
+			});
+		}
+		await dispatch(statusCourses({ is_active: !is_active, id }));
 		Swal.fire({
-			position: 'center',
-			icon: 'success',
-			text: `company has been ${is_active ? 'success change the status to no active' : 'success change the status to active'}`,
-			timer: 1500
-		})
-		setCourse(true)
-	}
+			position: "center",
+			icon: "success",
+			text: `company has been ${
+				is_active
+					? "success change the status to no active"
+					: "success change the status to active"
+			}`,
+			timer: 1500,
+		});
+		setCourse(true);
+	};
+
 	return (
 		<>
 			{!courseData ? (
+				<BlankData
+					image={course}
+					link={`/dashboard/add-course/${companyId}`}
+					h1={`You haven't added a course`}
+					h2={`Add a course right now!`}
+					btn={"Add Course"}
+				/>
+			) : !courseData.length ? (
 				<BlankData
 					image={course}
 					link={`/dashboard/add-course/${companyId}`}
@@ -136,27 +163,41 @@ const Index = ({ courseData, companyId, setCourse }) => {
 																Actions
 															</Dropdown.Toggle>
 
-															<Dropdown.Menu>
-																<Dropdown.Item
-																	onClick={() =>
-																		navigate(`/dashboard/participants/${e.id}`)
-																	}
-																>
-																	List Participant
-																</Dropdown.Item>
-																<Dropdown.Item
-																	onClick={() =>
-																		navigate(`/dashboard/update-course/${e.id}`)
-																	}
-																>
-																	Edit
-																</Dropdown.Item>
-																<Dropdown.Item
-																	onClick={() => handleDelete(e.id)}
-																>
-																	Delete
-																</Dropdown.Item>
-															</Dropdown.Menu>
+															{!setCourse ? (
+																<Dropdown.Menu>
+																	<Dropdown.Item
+																		onClick={() => handleDelete(e.id)}
+																	>
+																		Delete
+																	</Dropdown.Item>
+																</Dropdown.Menu>
+															) : (
+																<Dropdown.Menu>
+																	<Dropdown.Item
+																		onClick={() =>
+																			navigate(
+																				`/dashboard/participants/${e.id}`,
+																			)
+																		}
+																	>
+																		List Participant
+																	</Dropdown.Item>
+																	<Dropdown.Item
+																		onClick={() =>
+																			navigate(
+																				`/dashboard/update-course/${e.id}`,
+																			)
+																		}
+																	>
+																		Edit
+																	</Dropdown.Item>
+																	<Dropdown.Item
+																		onClick={() => handleDelete(e.id)}
+																	>
+																		Delete
+																	</Dropdown.Item>
+																</Dropdown.Menu>
+															)}
 														</Dropdown>
 													</td>
 												</tr>

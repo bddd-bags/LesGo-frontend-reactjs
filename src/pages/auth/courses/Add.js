@@ -189,7 +189,7 @@ const Add = () => {
 		<>
 			<Index
 				element={element()}
-				name={"Add Payment"}
+				name={"Add Course"}
 				icon={<MdAddBox color="white" />}
 			/>
 		</>
